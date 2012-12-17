@@ -1,0 +1,63 @@
+﻿@model AppTemplate.Domain.User
+
+@{
+}
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>User</legend>
+    
+            @Html.HiddenFor(model => model.Id)
+    
+      <p>
+        @Html.LabelFor(m => m.Username)
+        @Html.EditorFor(m => m.Username)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Email)
+        @Html.EditorFor(m => m.Email)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.UserRole)
+        @Html.DropDownListFor(model => model.UserRole, new SelectList(Enum.GetValues(typeof(AppTemplate.Domain.UserRole))))
+        @Html.DisplayFor(m => m.UserRole)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Comment)
+        @Html.EditorFor(m => m.Comment)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Disabled)
+        @Html.EditorFor(m => m.Disabled)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Agreement)
+        @Html.EditorFor(m => m.Agreement)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.PasswordNeedsUpdating)
+        @Html.EditorFor(m => m.PasswordNeedsUpdating)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateCreated)
+        @Html.DisplayFor(m => m.DateCreated)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateLastLogin)
+        @Html.DisplayFor(m => m.DateLastLogin)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateLastPasswordChange)
+        @Html.DisplayFor(m => m.DateLastPasswordChange)
+      </p>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

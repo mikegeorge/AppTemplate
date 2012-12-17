@@ -1,0 +1,103 @@
+﻿@using System.Web.Optimization
+@model AppTemplate.Controllers.FormModels.LoginForm
+
+@{
+  Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login | AppTemplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    @Styles.Render("~/Content/bootstrap")
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      form {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      form .form-signin-heading,
+      form .checkbox {
+        margin-bottom: 10px;
+      }
+      form input[type="text"],
+      form input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+    @Styles.Render("~/Content/bootstrap-responsive")
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      @if(TempData["SuccessMessage"] != null) {
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Success!</strong> @TempData["SuccessMessage"].ToString()
+        </div>
+      }
+      @if(TempData["InfoMessage"] != null) {
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Info:</strong> @TempData["InfoMessage"].ToString()
+        </div>
+      }
+      @if(TempData["ErrorMessage"] != null) {
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error:</strong> @TempData["ErrorMessage"].ToString()
+        </div>
+      }
+      @using(Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <h2 class="form-signin-heading">Please sign in</h2>
+        @Html.LabelFor(m => m.Email)
+        @Html.EditorFor(m => m.Email, new {@class="input-block-level"})
+        @Html.ValidationMessageFor(m => m.Email)
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class="input-block-level" })
+        @Html.ValidationMessageFor(m => m.Password)
+        <label class="checkbox">
+          @Html.EditorFor(m => m.Remember) Remember me
+        </label>
+        <input type="submit" class="btn btn-large btn-primary" value="Login" />
+        <p>@Html.ActionLink("Forgot Password?","ForgotPassword")</p>
+      }
+    </div> <!-- /container -->
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+  </body>
+</html>

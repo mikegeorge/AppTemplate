@@ -1,0 +1,14 @@
+﻿@model AppTemplate.Controllers.FormModels.RegisterForm
+
+@{
+}
+@using (Html.BeginForm("Register", "Users", FormMethod.Post, new { @class = "form-horizontal" })) {
+  <legend>Register</legend>
+  @Html.LabelFor(m => m.Username)
+  @Html.TextBoxFor(m => m.Username)
+  @Html.ValidationMessageFor(m => m.Username)
+  @Html.LabelFor(m => m.Email)
+  @Html.TextBoxFor(m => m.Email)
+  @Html.ValidationMessageFor(m => m.Email)
+  <button type="submit" class="btn">Submit</button>
+}

@@ -1,0 +1,52 @@
+﻿@model AppTemplate.Domain.User
+
+@{
+}
+    <fieldset>
+        <legend>User</legend>
+      <p>
+        @Html.LabelFor(m => m.Username)
+        @Html.DisplayFor(m => m.Username)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Email)
+        @Html.DisplayFor(m => m.Email)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.UserRole)
+        @Html.DisplayFor(m => m.UserRole)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Comment)
+        @Html.DisplayFor(m => m.Comment)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Disabled)
+        @Html.DisplayFor(m => m.Disabled)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.Agreement)
+        @Html.DisplayFor(m => m.Agreement)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.PasswordNeedsUpdating)
+        @Html.DisplayFor(m => m.PasswordNeedsUpdating)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateCreated)
+        @Html.DisplayFor(m => m.DateCreated)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateLastLogin)
+        @Html.DisplayFor(m => m.DateLastLogin)
+      </p>
+      <p>
+        @Html.LabelFor(m => m.DateLastPasswordChange)
+        @Html.DisplayFor(m => m.DateLastPasswordChange)
+      </p>
+      </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

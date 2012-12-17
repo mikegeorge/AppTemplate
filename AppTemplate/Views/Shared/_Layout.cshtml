@@ -1,0 +1,97 @@
+﻿@using System.Web.Optimization
+@using AppTemplate.Extensions
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AppTemplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @Styles.Render("~/Content/bootstrap")
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    @Styles.Render("~/Content/bootstrap-responsive")
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">AppTemplate</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li @Html.Raw(ViewBag.Page == "home" ? "class=\"active\"" : "")><a href="/">Home</a></li>
+              <li><a href="/">Home</a></li>
+              @if (User.IsAuthorized("editor,administrator")) {
+                <li>@Html.ActionLink("Editors", "Editors", "Home")</li>
+              }
+              @if (User.IsAuthorized("administrator")) {
+                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+              }
+            </ul>
+            <ul class="nav pull-right">
+          @if (User.Identity.IsAuthenticated)
+          {
+@*              <li class="divider-vertical"></li>*@
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.Name <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>@Html.ActionLink("My Account", "Index", "Account")</li>
+                  <li>@Html.ActionLink("Change Password", "ChangePassword", "Account")</li>
+                  <li class="divider"></li>
+                  <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                </ul>
+              </li>
+          }
+          else {
+              <li @Html.Raw(ViewBag.Page == "login" ? "class=\"active\"" : "")><a href="/account/login/">Login</a></li>
+          }
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>    
+    </div>
+
+    <div class="container">
+      @if(TempData["SuccessMessage"] != null) {
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Success!</strong> @TempData["SuccessMessage"].ToString()
+        </div>
+      }
+      @if(TempData["InfoMessage"] != null) {
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Info:</strong> @TempData["InfoMessage"].ToString()
+        </div>
+      }
+      @if(TempData["ErrorMessage"] != null) {
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error:</strong> @TempData["ErrorMessage"].ToString()
+        </div>
+      }
+      <h1>@ViewBag.Title</h1>
+      @RenderBody()
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("javascript", false)
+
+  </body>
+</html>
